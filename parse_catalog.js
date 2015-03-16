@@ -5,24 +5,11 @@ var fs = require('fs');
 var request = require('request');
 var util = require('util');
 var cheerio = require ('cheerio')
+var utils = require ('./utils.js')
 
 var WAIT=3000
-var CACHE_DIR = 'cache/page/'
+var CACHE_PAGE = 'cache/page/'
 var CACHE_CATALOG = 'cache/catalog/'
-var DEBUG = true 
-
-var headers = {
-  "accept-charset" : "ISO-8859-1,utf-8;q=0.7,*;q=0.3",
-  "accept-language" : "en-US,en;q=0.8",
-  "accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-  "user-agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2",
-  //"accept-encoding" : "gzip,deflate",
-};
-
-function debugLog(msg) {
-    if (DEBUG)
-        console.log(msg)
-} 
 
 //parse a catelog page
 function parsePage(data, next) {
@@ -30,8 +17,25 @@ function parsePage(data, next) {
     var hrefs = new Array()
     $('a.thumbnail-img').each(function(i, ele) {
         var href = $(ele).attr('href');
-        debugLog(href)
-        hrefs.push(href)
+        utils.debugLog(href)
+        var norm_url = utils.normalizeURL(href)
+        var fnw = CACHE_PAGE + norm_url
+        //hrefs.push(href)
+        utils.checkDownloaded(fnw, function() {
+            console.log('file has been downloaded:', fnw)
+        }, function() {
+            utils.downloadUrl(href, function(body) {
+                fs.writeFile(fnw, body, function(err) {
+                    if(err) {
+                        console.log(err);
+                    } else {
+                        console.log(fnw+" was saved!");
+                    }
+                });
+                setTimeout(function() {
+                }, WAIT+Math.random()*5000);
+            });
+        });
     });
     next(hrefs)
 }
