@@ -1,3 +1,6 @@
+//download from catelog pages
+"use strict";
+
 var fs = require('fs');
 var request = require('request');
 var util = require('util');
@@ -21,19 +24,9 @@ function debugLog(msg) {
         console.log(msg)
 }
 
-function checkDownloaded(path, nextExist, nextNotExist) {
-    debugLog('check download:'+path)
-    fs.exists(path, function(exists) {
-        if (exists) {
-            nextExist();
-        } else {
-            nextNotExist();
-        }
-    });
-}
 
 function normalizeURL(url) {
-    var link1 = url.replace(/\//g,'-');
+    var link1 = url.replace(/[\/:]/g,'-');
     return link1;
 } 
 
