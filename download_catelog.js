@@ -6,7 +6,7 @@ var request = require('request');
 var util = require('util');
 var utils = require('./utils.js');
 
-var WAIT=3000
+var WAIT=20000
 var CACHE_DIR = 'cache/catalog/'
 var DEBUG = true
 

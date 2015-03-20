@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  h2 total items: #{total}
+
+
+  table#box-table-a 
+    tr
+      th Link
+      th Title
+      th Images
+      th Description
+      th Likes
+      th Feedback
+      th Source
+      th Creation Time
+    each r in items
+      tr
+        td(style="max-width:850px;")
+          a(href=r.link,target="_blank") #{r.link}
+        td #{r.title}
+        td 
+          each imgsrc in r.images 
+            a(href=imgsrc)
+              img(src=imgsrc width=120)
+        td #{r.description}
+        td #{r.likes}
+        td #{r.feedback}
+        td #{r.source}
+        td #{r.createtime}
+  
+  br
+  div
+    if pageData.first
+      a(href="/?page=#{pageData.first}") First
+    = ' ' 
+    if pageData.previous
+      a(href="/?page=#{pageData.previous}") Previous
+    = ' ' 
+    - each pg in pageData.range
+      a(href="/?page=#{pg}") #{pg}
+      = ' ' 
+    if pageData.next
+      a(href="/?page=#{pageData.next}") Next
+    = ' ' 
+    if pageData.last
+      a(href="/?page=#{pageData.last}") Last
+    = ' '
+
+  p
+

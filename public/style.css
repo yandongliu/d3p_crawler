@@ -1,0 +1,29 @@
+body{
+  font-size:12px;
+  font-family: verdana,arial,sans-serif;
+}
+.menu a{
+  color:#ffffff;
+} 
+table>a{
+  color:#ffffff;
+} 
+.menu {  
+font-size:13px;
+  background: #3366CC; 
+  color:#ffffff; 
+  padding: 2px 5px 5px 5px;
+}
+tr{
+font-size: 12px;
+  padding: 0px 8px 0px 8px;
+  background: #e8edff; 
+  border-bottom: 1px solid #fff;
+  color:#282828;
+  border-top: 1px solid transparent;
+  height:30px;
+}
+td {
+  padding-right:25px;
+  padding-left:25px;
+}

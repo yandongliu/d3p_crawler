@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/static/style.css')
+    script(src="/static/jquery-1.11.0.min.js")
+    script(src="/static/util.js")
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZtP55ULHGM5hC9f3V4fCuMoROeoTRLeE&sensor=true")
+    script(type='text/javascript').
+      $(function() {
+        init();
+      });
+
+  body
+    h1 Uber 3D Printing
+    header
+      nav
+        .menu
+          = ' ' 
+          a(href="/") Home
+          = '  |  '
+          a(href="/") About 
+  
+       
+    section#wrapper
+      block content
+      div  
+        form
+          input(type="text" id="cssurl" size="80")
+          input(type="button" id="cssurl_btn" value="change css")
+      footer 
+        #container.center(style="text-align:center")
+          p 3dprint Inc. 2015 - 2015
+          label Contact: 
+          a(href="mailto:contact@.com") contact@.com

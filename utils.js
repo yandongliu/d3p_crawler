@@ -51,5 +51,3 @@ exports.debugLog = debugLog
 exports.downloadUrl = downloadUrl
 exports.normalizeURL = normalizeURL
 exports.checkDownloaded = checkDownloaded
-
-console.log(exports)
